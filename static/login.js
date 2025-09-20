@@ -32,7 +32,7 @@ export function loginpage() {
     Password.type = "password"
     Password.placeholder = "password"
     Password.required = true
-    // her i will add the submit buthon
+    // Her i will add the submit buthon
     const submit = document.createElement('button')
     submit.type = "submit"
     submit.style.padding = "10px"
@@ -40,12 +40,12 @@ export function loginpage() {
     submit.style.marginLeft = "130px"
     submit.style.backgroundColor = "yellow"
     submit.textContent = "login"
-    // her i will  add children to ther father !!
+    // Her i will  add children to ther father !!
     form.append(userLabel, nameinput, document.createElement("br"))
     form.append(PasswordLabel, Password, document.createElement("br"))
     form.appendChild(submit)
-    // undefined ??!
-    //console.log(i)  
+    // Undefined ??!
+    //Console.log(i)  
     divMain.appendChild(form)
     stylediv.append(divMain)
     document.body.append(stylediv)

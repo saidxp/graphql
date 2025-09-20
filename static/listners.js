@@ -1,6 +1,6 @@
 import {Sendjwt} from "./sendData.js"
 
-export function setListner({ form, nameinput, password }) {
+export async function setListner({ form, nameinput, password }) {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const username = nameinput.value;
@@ -13,6 +13,8 @@ export function setListner({ form, nameinput, password }) {
                     'Content-Type': 'application/json'
                 }
             });
+            // Her Is The Invalid Credintiale !!
+            // <===============||==============>
             if (!response.ok) {
                 throw new Error('Invalid credentials');
             }
