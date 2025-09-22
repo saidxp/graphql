@@ -1,4 +1,5 @@
 import { GetJwt } from "./getjwtfromdb.js";
+import { BuildProfile } from "./profile.js";
  
 export async function Sendjwt(jwtString) {
     try {
@@ -14,8 +15,13 @@ export async function Sendjwt(jwtString) {
         }
         console.log('JWT sent to server successfully');
             const token = await GetJwt()
+            if (token.s) {
             console.log("Ana F TOKENT FROM DB-SERVER !!")
             console.log(token)
+            BuildProfile(token.jwt)
+            }
+            // Her I Will Set Them In The Local Storage Later For Navigation
+            // CALL HOME BUILDER PROFILE
     } catch (err) {
         console.error(err);
     }

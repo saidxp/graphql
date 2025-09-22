@@ -52,18 +52,23 @@ func Sendjwt(w http.ResponseWriter, r *http.Request) {
 	}
 	// <<==>> \\
 	var jwt string
+	var status bool
 	err := db.QueryRow(
 		"SELECT jwt FROM api_tokens ORDER BY issued_at DESC LIMIT 1",
 	).Scan(&jwt)
 	if err != nil {
 		http.Error(w, "No token found", http.StatusNotFound)
 		return
+	}else {
+		status = true 
 	}
 	// <<===>> \\
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]string{
-		"jwt": jwt,
-	})
+	response := map[string]interface{}{
+		"s":    status,
+		"jwt":  jwt,
+	}
+	json.NewEncoder(w).Encode(response)
 }
 
 func main() {
@@ -73,7 +78,7 @@ func main() {
 	filesystem := http.FileServer(http.Dir("./static"))
 	http.Handle("/", filesystem)
 	http.HandleFunc("/jwt", Takejwt)
-	http.HandleFunc("'/takejwt", Sendjwt)
+	http.HandleFunc("/takejwt", Sendjwt)
 	log.Println("localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }

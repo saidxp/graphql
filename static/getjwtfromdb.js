@@ -7,7 +7,7 @@ export async function GetJwt() {
         if (res.ok) {
 
         }
-        return res
+        return res.json()
     } catch {
         console.log("there is aproblem her at this")
     }
