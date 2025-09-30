@@ -1,4 +1,5 @@
 import { user } from "/query.js"
+import { buildheader } from "/buildheader.js"
 
 export async function BuildProfile(token) {
 
@@ -16,30 +17,20 @@ export async function BuildProfile(token) {
 
   const json = await res.json();
   console.log("----------->")
-  console.log(json.data.user?.[0]);
+  console.log(json.data.transaction[0].amount);
+  let lev = json.data.transaction[0].amount
   let name = json.data.user?.[0].firstName
-  let lat = json.data.user?.[0].lastName
-  let lev = parseFloat(json.data.user?.[0].auditRatio.toFixed(1))
+  let lat = json.data.user?.[0].lastName 
+  // Her I Will Call Every Function to build something in the page profile !! 
+  
+  // her i will call funciton to build header !! 
+  buildheader(name,lat,lev)
+
+  let rat = parseFloat(json.data.user?.[0].auditRatio.toFixed(1))
     //parseFloat(num.toFixed(1));
   console.log("-*------------>", name)
   let container = document.getElementById("formlogin")
   if (container) {
     container.remove()
   }
-  // <<======>>
-  let userName = document.getElementById('name')
-  userName.innerHTML = ""
-  let lastName = document.getElementById('lastname')
-  lastName.innerHTML = ""
-  let level = document.getElementById('level')
-  level.innerHTML = ""
-  // <<=====>>
-  console.log(userName)
-  console.log(lastName)
-  console.log(level)
-  userName.innerText = `${name}`
-  lastName.innerText = `${lat}`
-  level.innerHTML = `${lev}`
-  let last = document.getElementById('lastname')
-  
 }

@@ -1,16 +1,15 @@
 export function loginpage() {
     // Her I Will Create it 
-    // container for styling loig
-    const stylediv = document.createElement('div')
-    stylediv.style.display = "flex"
-    stylediv.style.justifyContent = "center"    
-    stylediv.style.alignItems = "center"        
-    stylediv.style.height = "100vh"
-    //stylediv.style.position = "center"
-    const divMain = document.getElementById('main-container')
-    divMain.innerHTML = ""
-    // ther form !!
-    //const logForm = document.createElement('div')
+    // container for styling login 
+
+    // 
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/css/login.css";
+    document.head.appendChild(link); 
+
+    const container = document.getElementById('login')
+ 
     const form = document.createElement('form')
     form.id = "formlogin"
     // The Input UserName !
@@ -35,10 +34,6 @@ export function loginpage() {
     // Her i will add the submit buthon
     const submit = document.createElement('button')
     submit.type = "submit"
-    submit.style.padding = "10px"
-    submit.style.margin = "20px"
-    submit.style.marginLeft = "130px"
-    submit.style.backgroundColor = "yellow"
     submit.textContent = "login"
     // Her i will  add children to ther father !!
     form.append(userLabel, nameinput, document.createElement("br"))
@@ -46,8 +41,9 @@ export function loginpage() {
     form.appendChild(submit)
     // Undefined ??!
     //Console.log(i)  
-    divMain.appendChild(form)
-    stylediv.append(divMain)
-    document.body.append(stylediv)
+    container.appendChild(form)
+   
+    // Her Is The Style Div
+    //container.append(divMain)
     return { form, nameinput, password };
 }
