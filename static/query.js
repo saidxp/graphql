@@ -3,12 +3,12 @@
 // <===========> \\ 
 export const user = `
 query {
-  user {
+  user_info: user {
     firstName
     lastName
-    auditRatio
   }
-  transaction(
+
+  latestLevel: transaction(
     where: {
       _and: [
         { type: { _eq: "level" } },
@@ -20,5 +20,15 @@ query {
   ) {
     amount
   }
-}
-`
+
+  skills: user {
+    transactions(
+      where: { type: { _nin: ["xp", "level", "up", "down"] } }
+    ) {
+      type
+      amount
+    }
+    }
+  }
+`;
+

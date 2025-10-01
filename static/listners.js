@@ -2,6 +2,7 @@ import {Sendjwt} from "./sendData.js"
 
 export async function setListner({ form, nameinput, password }) {
     form.addEventListener('submit', async (event) => {
+        console.log("ana f levent listner")
         event.preventDefault();
         const username = nameinput.value;
         const pwd = password.value;

@@ -2,35 +2,21 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background: #0f172a; 
 }
 #header {
   display: flex;
-  justify-content: space-between; /* space between user info and logout */
-  align-items: center;
+  justify-content: space-between; 
   padding: 10px 20px;
-  background: #1e293b; /* dark slate */
+  background: #1e293b; 
   color: #ffffff;
   font-family: Arial, sans-serif;
   border-bottom: 2px solid #334155;
-}
-
-#header .user-info {
-  display: flex;
-  flex-direction: column; /* stack name, last name, and level vertically */
   gap: 4px;
 }
 
-#header .user-info div {
-  font-size: 14px;
-}
-
-#header #name {
-  font-weight: bold;
-  font-size: 16px;
-}
-
 #header #level {
-  color: #facc15; /* yellow highlight */
+  color: #facc15; 
   font-weight: 500;
 }
 

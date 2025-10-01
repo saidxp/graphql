@@ -1,5 +1,7 @@
 import { user } from "/query.js"
 import { buildheader } from "/buildheader.js"
+ 
+import { builskillssvg } from "/buildskillssvg.js"
 
 export async function BuildProfile(token) {
 
@@ -17,18 +19,21 @@ export async function BuildProfile(token) {
 
   const json = await res.json();
   console.log("----------->")
-  console.log(json.data.transaction[0].amount);
-  let lev = json.data.transaction[0].amount
-  let name = json.data.user?.[0].firstName
-  let lat = json.data.user?.[0].lastName 
+  console.log(json)
+  
+  //console.log(json.data.transaction[0].amount);
+  let lev = json.data.latestLevel?.[0].amount
+  let name = json.data.user_info?.[0].firstName
+  let lat = json.data.user_info?.[0].lastName
+  console.log(lev)
   // Her I Will Call Every Function to build something in the page profile !! 
   
   // her i will call funciton to build header !! 
   buildheader(name,lat,lev)
-
-  let rat = parseFloat(json.data.user?.[0].auditRatio.toFixed(1))
+  builskillssvg(json.data.skills)
+  //let rat = parseFloat(json.data.user?.[0].auditRatio.toFixed(1))
     //parseFloat(num.toFixed(1));
-  console.log("-*------------>", name)
+  //console.log("-*------------>", name)
   let container = document.getElementById("formlogin")
   if (container) {
     container.remove()

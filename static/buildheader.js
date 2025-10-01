@@ -1,8 +1,15 @@
 export function buildheader(name, lat, lev) {
-        const link = document.createElement("link");
+    const lin = document.querySelector('link[href="/css/login.css"]');
+
+    if (lin) {
+        lin.remove();
+    }
+    const link = document.createElement("link");
+
     link.rel = "stylesheet";
     link.href = "css/style.css";
     document.head.appendChild(link);
+
     let out = document.createElement("button")
     out.id = "logout"
     out.className = "out"
@@ -17,5 +24,5 @@ export function buildheader(name, lat, lev) {
     level.innerHTML = ""
     userName.innerText = `${name}`
     lastName.innerText = `${lat}`
-    level.innerText = `Level : ${lev}`
+    level.innerText = `Current Level : ${lev}`
 }

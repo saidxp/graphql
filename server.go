@@ -71,11 +71,31 @@ func Sendjwt(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
+func authentication(w http.ResponseWriter, r *http.Request) {
+	var jwt string
+	err := db.QueryRow("SELECT jwt FROM api_tokens ORDER BY issued_at DESC LIMIT 1").Scan(&jwt)
+	if err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"ok": false,
+		})
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"ok":    true,
+		"token": jwt,
+	})
+}
+
 func main() {
 	// I Will Create Handler... !! \\
 	initDB()
 	defer db.Close()
+
 	filesystem := http.FileServer(http.Dir("./static"))
+	http.HandleFunc("/auth", authentication)
 	http.Handle("/", filesystem)
 	http.HandleFunc("/jwt", Takejwt)
 	http.HandleFunc("/takejwt", Sendjwt)
