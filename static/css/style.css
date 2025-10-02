@@ -16,6 +16,7 @@ html, body {
 }
 
 #header #level {
+  font-size: 18px;
   color: #facc15; 
   font-weight: 500;
 }
