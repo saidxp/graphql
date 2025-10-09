@@ -2,6 +2,7 @@ import { user } from "/query.js"
 import { buildheader } from "/buildheader.js"
  
 import { builskillssvg } from "/buildskillssvg.js"
+import { builratiosvg } from "/buildratiosvg.js"
 
 export async function BuildProfile(token) {
 
@@ -31,6 +32,8 @@ export async function BuildProfile(token) {
   // her i will call funciton to build header !! 
   buildheader(name,lat,lev)
   builskillssvg(json.data.skills)
+  builratiosvg(json.data.ratio)
+  //buildratiosvg()
   //let rat = parseFloat(json.data.user?.[0].auditRatio.toFixed(1))
     //parseFloat(num.toFixed(1));
   //console.log("-*------------>", name)

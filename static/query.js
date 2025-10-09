@@ -1,6 +1,4 @@
 // Her I Will Access To query !!
-
-// <===========> \\ 
 export const user = `
 query {
   user_info: user {
@@ -28,7 +26,20 @@ query {
       type
       amount
     }
+  }
+    
+  ratio: user {
+    auditRatio
+    sucess: audits_aggregate(where: { closureType: { _eq: succeeded } }) {
+      aggregate {
+        count
+      }
+    }
+    failed: audits_aggregate(where: { closureType: { _eq: failed } }) {
+      aggregate {
+        count
+      }
     }
   }
+}
 `;
-

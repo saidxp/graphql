@@ -7,7 +7,7 @@ export function buildheader(name, lat, lev) {
     const link = document.createElement("link");
 
     link.rel = "stylesheet";
-    link.href = "css/style.css";
+    link.href = "/css/style.css";
     document.head.appendChild(link);
 
     let out = document.createElement("button")
