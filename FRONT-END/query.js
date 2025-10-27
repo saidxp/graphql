@@ -1,9 +1,10 @@
 // Her I Will Access To query !!
 export const user = `
+
 query {
   user_info: user {
-    firstName
-    lastName
+  login firstName lastName email auditRatio totalUp totalDown
+    finished_projects: groups(where: { group: {status: {_eq: finished}, _and: {eventId: {_eq: 41}} } }) { group { path members { userLogin } } }
   }
 
   latestLevel: transaction(
@@ -41,5 +42,20 @@ query {
       }
     }
   }
-}
-`;
+    
+  totalxp : transaction_aggregate(
+            where: {
+                type: { _eq: "xp" }
+                event: { object: { name: { _eq: "Module" } } }
+            }
+        ) {
+        aggregate {
+            sum {
+                amount
+            }
+        }
+  }
+  }        
+  `
+
+;

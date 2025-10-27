@@ -1,6 +1,7 @@
 import {loginpage} from './login.js'
 import {setListner} from './listners.js'
 import { BuildProfile } from './profile.js'
+import { showProfileContainers } from './profile.js'
 
  async function main() {
     console.log("howa")
@@ -10,14 +11,15 @@ import { BuildProfile } from './profile.js'
     console.log(a)
     console.log("after auth")
     if (a.ok) {
-        BuildProfile(a.token)
+    showProfileContainers();
+    BuildProfile(a.token)
     }else {
     const El = loginpage();
      setListner(El);
     }
     // Her I Will Get Data !<~>!
 }
-
+// the main of the main !!
 main()
 // Her Is The Main ...!! 
  

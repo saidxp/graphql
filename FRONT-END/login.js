@@ -1,8 +1,7 @@
 export function loginpage() {
     // Her I Will Create it 
-    // container for styling login 
-
-    // 
+    // container for styling login <!-!>
+    console.log("im at login page !")
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = "/css/login.css";

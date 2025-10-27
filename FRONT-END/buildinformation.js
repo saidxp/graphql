@@ -1,0 +1,102 @@
+export function buildinformation(data) {
+    // Her i
+    console.log("hello im at the build information table !!")
+    let userInfo = data[0]
+    console.log(userInfo.finished_projects)
+    buildProjectsTable(userInfo.finished_projects)
+    // Get the Info di
+    const infoDiv = document.getElementById('Info');
+    // Clear any existing content
+    infoDiv.innerHTML = '';
+    // Create the HTML content with the data
+    infoDiv.innerHTML = `
+        <div class="info-item">
+            <span class="info-label">Full Name:</span>
+            <span class="info-value">${userInfo.firstName} ${userInfo.lastName}</span>
+        </div>
+        
+        <div class="info-item">
+            <span class="info-label">Login:</span>
+            <span class="info-value">${userInfo.login}</span>
+        </div>
+        
+        <div class="info-item">
+            <span class="info-label">Email:</span>
+            <span class="info-value">${userInfo.email}</span>
+        </div>
+        
+        <div class="info-item">
+            <span class="info-label">Audit Ratio:</span>
+            <span class="info-value">${userInfo.auditRatio.toFixed(2)}</span>
+        </div>
+        
+        <div class="info-item">
+            <span class="info-label">Total Up:</span>
+            <span class="info-value">${(userInfo.totalUp / 1000000).toFixed(2)} MB</span>
+        </div>
+        
+        <div class="info-item">
+            <span class="info-label">Total Down:</span>
+            <span class="info-value">${(userInfo.totalDown / 1000000).toFixed(2)} MB</span>
+        </div>
+        
+        <div class="info-item">
+            <span class="info-label">Finished Projects:</span>
+            <span class="info-value">${userInfo.finished_projects.length}</span>
+        </div>
+    `;
+}
+
+export function buildProjectsTable(finished_projects) {
+    const container = document.getElementById("project");
+    container.innerHTML = ""; // clear old table if it exists
+  
+    // Create table wrapper
+    const tableWrapper = document.createElement("div");
+    tableWrapper.className = "table-wrapper";
+    
+    // Create table
+    const table = document.createElement("table");
+    table.className = "projects-table";
+  
+    // Create header
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    const headers = ["#", "Project Name", "Group Members"];
+    
+    headers.forEach(title => {
+      const th = document.createElement("th");
+      th.textContent = title;
+      headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+    // Create body
+    const tbody = document.createElement("tbody");
+    // Fill rows
+    finished_projects.forEach((project, i) => {
+      const tr = document.createElement("tr");
+      const tdNum = document.createElement("td");
+      tdNum.textContent = i + 1;
+      tdNum.className = "td-number";
+      tr.appendChild(tdNum);
+      const tdPath = document.createElement("td");
+      const pathParts = project.group.path.split('/');
+      const projectName = pathParts[3] || project.group.path;  
+      tdPath.textContent = projectName;
+      tdPath.className = "td-path";
+      tr.appendChild(tdPath);
+      // <<=====>>
+      const tdMembers = document.createElement("td");
+      const members = project.group.members.map(m => m.userLogin).join(", ");
+      tdMembers.textContent = members;
+      tdMembers.className = "td-members";
+      tr.appendChild(tdMembers);  
+      tbody.appendChild(tr);
+    });
+    
+    table.appendChild(tbody);
+    tableWrapper.appendChild(table);
+    container.appendChild(tableWrapper);
+}

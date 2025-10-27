@@ -1,11 +1,12 @@
 import {Sendjwt} from "./sendData.js"
+import { showProfileContainers } from "./profile.js";
 
 export async function setListner({ form, nameinput, password }) {
     form.addEventListener('submit', async (event) => {
-        console.log("ana f levent listner")
         event.preventDefault();
         const username = nameinput.value;
         const pwd = password.value;
+
         try {
             const response = await fetch('https://learn.zone01oujda.ma/api/auth/signin', {
                 method: 'POST',
@@ -14,22 +15,24 @@ export async function setListner({ form, nameinput, password }) {
                     'Content-Type': 'application/json'
                 }
             });
-            // Her Is The Invalid Credintiale !!
-            // <===============||==============>
+
+            const text = await response.text();
             if (!response.ok) {
                 throw new Error('Invalid credentials');
             }
-            const data = await response.json();
-            //const jwt = data.token; !!
-            console.log("=== Her Is The Data")
-            console.log(data);
-            console.log("her is the data")
-            // <==!==> Her I Will Call Function Who Will <==!==> \\ 
-            Sendjwt(data)
-            alert('Login successful!');
+            const token = response.headers.get('Authorization');
+            if (!token) {
+                throw new Error('No JWT received');
+            }
+
+            // Store token in DB or use it in next step
+            Sendjwt(token);
+            showProfileContainers();
+
         } catch (err) {
             console.error(err);
             alert('Login failed: ' + err.message);
         }
     });
 }
+
