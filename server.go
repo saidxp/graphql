@@ -12,6 +12,7 @@ import (
 )
  
 func main() {
+	// Her i will 
 	// I Will Create Handler... !! \\
 	fmt.Println("hello")
 	db.InitDB()
@@ -22,6 +23,7 @@ func main() {
 	http.HandleFunc("/jwt", auth.Takejwt)
 	http.HandleFunc("/takejwt", auth.Sendjwt)
 	http.HandleFunc("/logout", service.Logout)
-	log.Println("localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/check-jwt", service.CheckValidjwt)
+	log.Println("localhost:8080") // <<< 
+	http.ListenAndServe(":8080", nil) // <<==!!==>> 
 }

@@ -1,22 +1,22 @@
 export function buildheader(name, lat, lev, token) {
-    // csss 
+    // Css Handling ... !!  
     const lin = document.querySelector('link[href="/css/login.css"]');
     if (lin) lin.remove();
-  
+
     //  <<======>>
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = "/css/style.css";
     document.head.appendChild(link);
-  
+
     // Create Logout Button ... !
     let out = document.createElement("button");
     out.id = "logout";
     out.className = "out";
     out.innerText = "Logout";
     let header = document.getElementById("header");
-    header.appendChild(out);
-    // Set User Info 
+    header.appendChild(out); // << === >> !! 
+    // Set User Info ... !!! 
     document.getElementById('name').innerText = name;
     document.getElementById('lastname').innerText = lat;
     document.getElementById('level').innerText = `Current Level: ${lev}`;
@@ -29,11 +29,12 @@ export function buildheader(name, lat, lev, token) {
                 },
                 body: JSON.stringify({ token }),
             });
+            // Her i will remove login from local storage
+            localStorage.removeItem("login");
             resetMainContainers()
             const { loginpage } = await import("./login.js");
             const { setListner } = await import("./listners.js");
             const El = loginpage();
-    
             setListner(El);
         } catch (err) {
             console.error("Logout failed:", err);

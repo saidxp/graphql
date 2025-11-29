@@ -5,13 +5,15 @@ import  (
 	"encoding/json"
 	"graphe/global"
 	"fmt"
+	"time"
 )
 
 type LogoutRequest struct {
 	Token string `json:"token"`
 }
 
-func Logout(w http.ResponseWriter, r *http.Request) {
+func Logout(w http.ResponseWriter, r *http.Request) { 
+
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -22,16 +24,24 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request", http.StatusBadRequest)
 		return
 	}
-	//fmt.Println(req.Token)
+	// Delete JWT from DB
 	err = DeleteToken(req.Token)
 	if err != nil {
 		http.Error(w, "Failed to logout", http.StatusInternalServerError)
 		return
-	}
+	} 
+	http.SetCookie(w, &http.Cookie{
+		Name:     "jwt",
+		Value:    "",
+		Expires:  time.Unix(0, 0),  
+		HttpOnly: true,
+		Secure:   true,
+		SameSite: http.SameSiteStrictMode,
+	})
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
 		"status": "success",
-	})
+	}) 
 }
 
 func DeleteToken(token string) error {

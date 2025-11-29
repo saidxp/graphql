@@ -3,23 +3,38 @@ import {setListner} from './listners.js'
 import { BuildProfile } from './profile.js'
 import { showProfileContainers } from './profile.js'
 
- async function main() {
-    console.log("howa")
-    const auh = await fetch('/auth')
-    const a =  await auh.json()
-    console.log("before auth")
-    console.log(a)
-    console.log("after auth")
-    if (a.ok) {
-    showProfileContainers();
-    BuildProfile(a.token)
-    }else {
-    const El = loginpage();
-     setListner(El);
+
+async function main() {
+    console.log("Starting main");
+    const authRes = await fetch('/auth');
+    const authData = await authRes.json();
+
+    console.log("Before auth check:", authData); 
+
+    if (authData.ok) {
+        // User is authenticated 
+        console.log("User is authenticated");
+        showProfileContainers();
+        BuildProfile(authData.token); 
+        // Worker To Check Expired JWT Token !! 
+        const jwtWorker = new SharedWorker("/FRONT-END/Check.js");
+             console.log(jwtWorker)
+            jwtWorker.onmessage = function(e) { 
+                if (!e.data.valid) {
+                    //alert("Session expired. Please log in again.");
+                    //window.location.href = "/login"; 
+                     console.log("JWT validity checked by worker:", e.data.valid);
+                } 
+            };
+        
+    } else {
+        // User is not authenticated
+        console.log("User is not authenticated, showing login page");
+         const el = loginpage();
+        setListner(el);
     }
-    // Her I Will Get Data !<~>!
+    console.log("After auth check"); // <<===>> \\ {0}...}
 }
-// the main of the main !!
-main()
-// Her Is The Main ...!! 
- 
+
+// start<=>main
+main();

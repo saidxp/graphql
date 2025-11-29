@@ -1,10 +1,10 @@
 export function buildinformation(data) {
-    // Her i
+    // Her <-<==========>->
     console.log("hello im at the build information table !!")
     let userInfo = data[0]
     console.log(userInfo.finished_projects)
     buildProjectsTable(userInfo.finished_projects)
-    // Get the Info di
+    // Get The Info div 
     const infoDiv = document.getElementById('Info');
     // Clear any existing content
     infoDiv.innerHTML = '';
