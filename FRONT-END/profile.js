@@ -6,9 +6,8 @@ import { builratiosvg } from "/buildratiosvg.js"
 import { buildinformation } from "./buildinformation.js"
 
 export async function BuildProfile(token) {
-
    
-    // her i will build the home !!
+  // her i will build the home !!
   const res = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql', {
         method: 'POST',
         headers: {

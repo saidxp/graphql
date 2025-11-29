@@ -8,8 +8,7 @@ import (
 )
 // Her i Will Check And Chek And Check !! 
 func InitDB() {
-
-	// Open the DB
+	// open the DB ...!
 	var err error
 	global.DB, err = sql.Open("sqlite3", "./tokens.db")
 	if err != nil {

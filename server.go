@@ -8,10 +8,12 @@ import (
 	"graphe/auth"
 	"graphe/global"
 	"graphe/service"
+	"fmt"
 )
  
 func main() {
 	// I Will Create Handler... !! \\
+	fmt.Println("hello")
 	db.InitDB()
 	defer global.DB.Close()
 	filesystem := http.FileServer(http.Dir("./FRONT-END"))
