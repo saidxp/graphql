@@ -1,15 +1,17 @@
-import { user } from "/query.js"
-import { buildheader } from "/buildheader.js"
-
-import { builskillssvg } from "/buildskillssvg.js"
-import { builratiosvg } from "/buildratiosvg.js"
+import { user } from "./query.js"
+import { buildheader } from "./buildheader.js"
+import { getJWT } from "./auth.js"
+import { builskillssvg } from "./buildskillssvg.js"
+import { builratiosvg } from "./buildratiosvg.js"
 import { buildinformation } from "./buildinformation.js"
-import { getJWTWorker } from "./setWorker.js"
 
 
-export async function BuildProfile(token) { 
-  
+export async function BuildProfile() {
+   
   // Her i will build the home !! 
+  //console.log(token) 
+  // <= Her I Will Get The Jwt From Local Storage !!=> 
+  const token = getJWT()
   console.log(token)
   const res = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql', {
         method: 'POST',
@@ -27,8 +29,7 @@ export async function BuildProfile(token) {
   let lat = json.data.user_info?.[0].lastName
   // Her I Will Call Every Function to build something in the page profile !! 
   // her i wll free all container :
-  showProfileContainers();
-  
+  showProfileContainers(); // There is alot of boooom !
   // her i will call funciton to build header !! 
   buildheader(name,lat,lev, token)
   builskillssvg(json.data.skills, json.data.totalxp)
@@ -43,10 +44,11 @@ export async function BuildProfile(token) {
     container.remove()
   } 
   // set Worker To Check JWT Validity !! 
-  getJWTWorker();
+  //getJWTWorker();
 }
 
 export function showProfileContainers() {
+  // Omg It's Alot Of Thing !!
   const containers = [
       "header",
       "Info",
@@ -64,5 +66,7 @@ export function showProfileContainers() {
   });
   const login = document.getElementById("Login");
   if (login) login.style.display = "none";
+  const loginCSS = document.querySelector('link[href="./css/login.css"]');
+if (loginCSS) loginCSS.remove();
   // \<<<|<->|>>>/
 }

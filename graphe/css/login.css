@@ -58,3 +58,20 @@ html, body {
 .login_container button:hover {
   background: #1d4ed8;
 }
+
+#login-error {
+    position: fixed;      
+    top: 20px;             
+    left: 50%;            
+    transform: translateX(-50%);
+    background-color: #fa090900;  
+    color: white;          
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 1000;     
+    display: none;      
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+}

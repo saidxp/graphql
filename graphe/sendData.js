@@ -1,7 +1,9 @@
 import { GetJwt } from "./getjwtfromdb.js";
 import { BuildProfile } from "./profile.js";
 
-export async function Sendjwt(jwtString) {
+export async function Sendjwt(jwtString) { 
+    // << === >> !! 
+    // Thats 
     try { 
         const username = localStorage.getItem("login");
         if (!username) {

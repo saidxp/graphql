@@ -1,4 +1,4 @@
-import { getJWTWorker } from "./setWorker.js";
+
 
 export function buildheader(name, lat, lev, token) {
     // Css Handling ... !!  
@@ -8,7 +8,7 @@ export function buildheader(name, lat, lev, token) {
     //  <<======>>
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/css/style.css";
+    link.href = "./css/style.css";
     document.head.appendChild(link);
 
     // Create Logout Button ... !
@@ -23,24 +23,17 @@ export function buildheader(name, lat, lev, token) {
     document.getElementById('lastname').innerText = lat;
     document.getElementById('level').innerText = `Current Level: ${lev}`;
     // Logout Event Listener ... !!
-    out.addEventListener("click", async () => {
+    out.addEventListener("click", async () => { 
         try {
-            await fetch("/logout", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ token }),
-            });
-            const worker = getJWTWorker();
-            worker.port.postMessage({ action: "stop" });
             // -------------------------------
-            localStorage.removeItem("login");
+            localStorage.removeItem("jwt");
             resetMainContainers()
             const { loginpage } = await import("./login.js");
             const { setListner } = await import("./listners.js");
             const El = loginpage();
-            setListner(El);
+            setListner(El); 
+             const loginCSS = document.querySelector('link[href="./css/style.css"]');
+        if (loginCSS) loginCSS.remove();
         } catch (err) {
             console.error("Logout failed:", err);
         }
@@ -62,7 +55,7 @@ export function resetMainContainers() {
         "level", 
         "footer"       
     ];
-    // 
+    // <<====>> 
     containers.forEach(id => {
         const el = document.getElementById(id);
         if (id === "skills") {

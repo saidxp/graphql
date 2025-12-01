@@ -10,7 +10,7 @@ export function builratiosvg(object) {
     const container = document.getElementById("101");
 
     if (!container) {
-        console.log("⚠️ No container found with id='101'");
+        console.log("No container found with id='101'");
         return;
     }
     container.innerHTML = "";
@@ -19,11 +19,10 @@ export function builratiosvg(object) {
     title.className = "skill-row";
     container.appendChild(title);
 
-   
     const radius = 60;
     const cir = 2 * Math.PI * radius;
     const set = cir * (1 - successPercent / 100);
-
+    
     const svgWrapper = document.createElement("div");
     svgWrapper.innerHTML = `
         <svg width="200" height="200" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +77,6 @@ export function builratiosvg(object) {
     `;
     container.appendChild(svgWrapper.firstElementChild);
 
-    // 🏷️ Add labels (Success / Failed)
     const label = document.createElement("div");
     label.className = "label-ratio";
     label.innerHTML = `
@@ -92,6 +90,4 @@ export function builratiosvg(object) {
         </div>
     `;
     container.appendChild(label);
-
- 
 }

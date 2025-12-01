@@ -4,11 +4,21 @@ export function loginpage() {
     console.log("im at login page !")
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/css/login.css";
+    link.href = "./css/login.css";
     document.head.appendChild(link); 
 
-    const container = document.getElementById('login')
- 
+    // Err Container !! 
+    // Create the error div (hidden at first)
+
+    const container = document.getElementById('login') 
+
+    const errorDiv = document.createElement('div');
+    errorDiv.id = "login-error";
+    errorDiv.style.color = "red";
+    errorDiv.style.display = "none";  
+    errorDiv.textContent = "Invalid credentials!";
+    container.appendChild(errorDiv);
+
     const form = document.createElement('form')
     form.id = "formlogin"
     // The Input UserName !
@@ -44,5 +54,5 @@ export function loginpage() {
    
     // Her Is The Style Div
     //container.append(divMain)
-    return { form, nameinput, password };
+    return { form, nameinput, password,  errorDiv};
 }
