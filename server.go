@@ -10,10 +10,11 @@ import (
 	"graphe/service"
 	"fmt"
 )
- 
-func main() {
-	// Her i will 
-	// I Will Create Handler... !! \\
+
+func main() { 
+	
+	// HER I WILL  
+	// I Will Create Handler... !! \\ !!! 
 	fmt.Println("hello")
 	db.InitDB()
 	defer global.DB.Close()
@@ -24,6 +25,7 @@ func main() {
 	http.HandleFunc("/takejwt", auth.Sendjwt)
 	http.HandleFunc("/logout", service.Logout)
 	http.HandleFunc("/check-jwt", service.CheckValidjwt)
-	log.Println("localhost:8080") // <<< 
-	http.ListenAndServe(":8080", nil) // <<==!!==>> 
+	log.Println("localhost:8080") // <<<>> \\  
+	http.ListenAndServe(":8080", nil) // <<==!!==>> \\ !  
 }
+

@@ -1,3 +1,5 @@
+import { getJWTWorker } from "./setWorker.js";
+
 export function buildheader(name, lat, lev, token) {
     // Css Handling ... !!  
     const lin = document.querySelector('link[href="/css/login.css"]');
@@ -20,6 +22,7 @@ export function buildheader(name, lat, lev, token) {
     document.getElementById('name').innerText = name;
     document.getElementById('lastname').innerText = lat;
     document.getElementById('level').innerText = `Current Level: ${lev}`;
+    // Logout Event Listener ... !!
     out.addEventListener("click", async () => {
         try {
             await fetch("/logout", {
@@ -29,7 +32,9 @@ export function buildheader(name, lat, lev, token) {
                 },
                 body: JSON.stringify({ token }),
             });
-            // Her i will remove login from local storage
+            const worker = getJWTWorker();
+            worker.port.postMessage({ action: "stop" });
+            // -------------------------------
             localStorage.removeItem("login");
             resetMainContainers()
             const { loginpage } = await import("./login.js");
@@ -42,8 +47,7 @@ export function buildheader(name, lat, lev, token) {
     });
   }
 
-
-  
+// <<=====>>> 
 export function resetMainContainers() {
     const link = document.querySelector(`link[href="/css/style.css"]`);
     if (link) link.remove();

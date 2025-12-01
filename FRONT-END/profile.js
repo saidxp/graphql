@@ -1,13 +1,16 @@
 import { user } from "/query.js"
 import { buildheader } from "/buildheader.js"
- 
+
 import { builskillssvg } from "/buildskillssvg.js"
 import { builratiosvg } from "/buildratiosvg.js"
 import { buildinformation } from "./buildinformation.js"
+import { getJWTWorker } from "./setWorker.js"
 
-export async function BuildProfile(token) {
-   
-  // her i will build the home !!
+
+export async function BuildProfile(token) { 
+  
+  // Her i will build the home !! 
+  console.log(token)
   const res = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql', {
         method: 'POST',
         headers: {
@@ -16,8 +19,9 @@ export async function BuildProfile(token) {
         },    
         body: JSON.stringify({query: user}) 
     })
-  const json = await res.json();
-  //console.log(json.data.transaction[0].amount);
+  const json = await res.json(); 
+  console.log("After Data it's comming", json)
+  //console.log(json.data.transaction[0].amount); 
   let lev = json.data.latestLevel?.[0].amount
   let name = json.data.user_info?.[0].firstName
   let lat = json.data.user_info?.[0].lastName
@@ -32,13 +36,14 @@ export async function BuildProfile(token) {
   buildinformation(json.data.user_info)
   //buildratiosvg()
   //let rat = parseFloat(json.data.user?.[0].auditRatio.toFixed(1))
-    //parseFloat(num.toFixed(1));
- 
+  //parseFloat(num.toFixed(1));
   //console.log("-*------------>", name)
   let container = document.getElementById("formlogin")
   if (container) {
     container.remove()
-  }
+  } 
+  // set Worker To Check JWT Validity !! 
+  getJWTWorker();
 }
 
 export function showProfileContainers() {

@@ -7,18 +7,29 @@ import (
 )
 
 func Authentication(w http.ResponseWriter, r *http.Request) {
-	var jwt string 
-	err := global.DB.QueryRow("SELECT jwt FROM api_tokens ORDER BY  created_at DESC LIMIT 1").Scan(&jwt)
-	if err != nil {
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(map[string]interface{}{
-			"ok": false,
-		})
-		return
-	} 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"ok":    true,
-		"token": jwt,
-	})
+    cookie, err := r.Cookie("jwt")
+    if err != nil {
+        w.Header().Set("Content-Type", "application/json")
+        json.NewEncoder(w).Encode(map[string]interface{}{
+            "ok": false,
+            "error": "No JWT cookie found",
+        })
+        return
+    }
+    tokenString := cookie.Value
+    var username string
+    err = global.DB.QueryRow("SELECT logi1 FROM api_tokens WHERE jwt = ?", tokenString).Scan(&username)
+    if err != nil {
+        w.Header().Set("Content-Type", "application/json")
+        json.NewEncoder(w).Encode(map[string]interface{}{
+            "ok": false,
+            "error": "JWT not found in DB",
+        })
+        return
+    }
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(map[string]interface{}{
+        "ok": true,
+        "token": tokenString,
+    })
 }

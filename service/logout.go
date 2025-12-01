@@ -24,7 +24,7 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request", http.StatusBadRequest)
 		return
 	}
-	// Delete JWT from DB
+	// <<===>> 
 	err = DeleteToken(req.Token)
 	if err != nil {
 		http.Error(w, "Failed to logout", http.StatusInternalServerError)
