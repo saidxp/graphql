@@ -1,5 +1,3 @@
-
-
 export function buildheader(name, lat, lev, token) {
     // Css Handling ... !!  
     const lin = document.querySelector('link[href="/css/login.css"]');
@@ -38,7 +36,7 @@ export function buildheader(name, lat, lev, token) {
             console.error("Logout failed:", err);
         }
     });
-  }
+}
 
 // <<=====>>> 
 export function resetMainContainers() {

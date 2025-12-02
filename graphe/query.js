@@ -3,8 +3,30 @@ export const user = `
 
 query {
   user_info: user {
-  login firstName lastName email auditRatio totalUp totalDown
-    finished_projects: groups(where: { group: {status: {_eq: finished}, _and: {eventId: {_eq: 41}} } }) { group { path members { userLogin } } }
+    login
+    firstName
+    lastName
+    email
+    auditRatio
+    totalUp
+    totalDown
+
+    finished_projects: groups(
+      where: {
+        group: {
+          status: { _eq: finished }
+          eventId: { _eq: 41 }
+          members_aggregate: { count: { predicate: {_lt: 6} } }
+        }
+      }
+    ) {
+      group {
+        path
+        members {
+          userLogin
+        }
+      }
+    }
   }
 
   latestLevel: transaction(

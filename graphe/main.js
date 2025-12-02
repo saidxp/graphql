@@ -3,7 +3,7 @@ import {setListner} from './listners.js'
 import { BuildProfile } from './profile.js'
 import { showProfileContainers } from './profile.js'
 
-
+ 
 async function main() {
     console.log("Hello Bro !! ")
     // <<==>> !-! <<==>> \\ 
@@ -18,7 +18,7 @@ async function main() {
          const el = loginpage();
         setListner(el);
     }
-    console.log("After auth check"); // <<===>> \\ {0}...}
+    console.log("After auth check"); // 
 }
 
 // start<=>main

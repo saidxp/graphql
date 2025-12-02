@@ -4,9 +4,9 @@ export function buildinformation(data) {
     let userInfo = data[0]
     console.log(userInfo.finished_projects)
     buildProjectsTable(userInfo.finished_projects)
-    // Get The Info div 
+    // Get The Info div  
     const infoDiv = document.getElementById('Info');
-    // Clear any existing content
+    // Clear any existing content !! 
     infoDiv.innerHTML = '';
     // Create the HTML content with the data
     infoDiv.innerHTML = `
@@ -69,7 +69,7 @@ export function buildProjectsTable(finished_projects) {
       th.textContent = title;
       headerRow.appendChild(th);
     });
-
+   
     thead.appendChild(headerRow);
     table.appendChild(thead);
     // Create body
