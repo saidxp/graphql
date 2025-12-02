@@ -58,12 +58,10 @@ export function builskillssvg(skills, totalxp) {
                                 rx="2.5" ry="2.5" />
                         </clipPath>
                     </defs>
-
                     <!-- Label -->
                     <text x="1" y="5.5" fill="#fff" font-size="2.5" font-weight="600">
                         ${name.toUpperCase()}
                     </text>
-
                     <!-- Background -->
                     <rect x="30" y="1.5" width="${maxWidth}" height="5" 
                         fill="rgba(51, 51, 51, 0.5)" 

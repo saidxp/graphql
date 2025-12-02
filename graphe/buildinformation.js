@@ -49,12 +49,15 @@ export function buildinformation(data) {
 
 export function buildProjectsTable(finished_projects) {
     const container = document.getElementById("project");
-    container.innerHTML = ""; // clear old table if it exists
-  
+    container.innerHTML = ""; // clear old table if it exists  
+     const h = document.createElement('h2');
+        h.innerText = "Projects";
+        h.className = "pj";
+       // container.appendChild(h)
     // Create table wrapper
     const tableWrapper = document.createElement("div");
     tableWrapper.className = "table-wrapper";
-    
+    tableWrapper.appendChild(h)
     // Create table
     const table = document.createElement("table");
     table.className = "projects-table";
@@ -95,7 +98,7 @@ export function buildProjectsTable(finished_projects) {
       tr.appendChild(tdMembers);  
       tbody.appendChild(tr);
     });
-    
+
     table.appendChild(tbody);
     tableWrapper.appendChild(table);
     container.appendChild(tableWrapper);
