@@ -26,7 +26,7 @@ Users can  log in, and interact with INTRA ZONE01 OUJDA through GraphQL queries 
 --- 
 
 ## Authentication
-The backend issues a JWT when a user logs in.  
+The Browser issues a JWT when a user logs in.  
 The token is stored in LOCALSTORAGE and is required for protected GraphQL operations.
 ---
 
