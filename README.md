@@ -1,4 +1,4 @@
-# Forum Project – GraphQL & JWT
+# GraphQl Project – GraphQL & JWT
 
 This project is a simple forum application built with a GraphQL backend and JWT authentication.  
 The frontend is deployed on Vercel.
