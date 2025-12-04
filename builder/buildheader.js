@@ -1,4 +1,5 @@
-export function buildheader(name, lat, lev, token) {
+import { reset } from "../graphe/helpers/reset.js";
+export function buildheader(name, lat, lev) {
     // Css Handling ... !!  
     const lin = document.querySelector('link[href="/css/login.css"]');
     if (lin) lin.remove();
@@ -24,14 +25,7 @@ export function buildheader(name, lat, lev, token) {
     out.addEventListener("click", async () => { 
         try {
             // -------------------------------
-            localStorage.removeItem("jwt");
-            resetMainContainers()
-            const { loginpage } = await import("./login.js");
-            const { setListner } = await import("./listners.js");
-            const El = loginpage();
-            setListner(El); 
-             const loginCSS = document.querySelector('link[href="./css/style.css"]');
-        if (loginCSS) loginCSS.remove();
+            reset()
         } catch (err) {
             console.error("Logout failed:", err);
         }

@@ -4,7 +4,7 @@ import { builskillssvg } from "../builder/buildskillssvg.js"
 import { builratiosvg } from "../builder/buildratiosvg.js"
 import { buildinformation } from "../builder/buildinformation.js"
 import {getJWT} from "../graphe/helpers/auth.js"
-
+import { reset } from "../graphe/helpers/reset.js"
 
 export async function BuildProfile() {
   const token = getJWT()
@@ -18,11 +18,17 @@ export async function BuildProfile() {
         body: JSON.stringify({query: user}) 
   })
   const json = await res.json(); 
+  // Her I will when jwt not valide 
+  // {errors: Array(1)}
+  if (json.errors) {  
+    reset()
+    return 
+  } 
   let lev = json.data.latestLevel?.[0].amount
   let name = json.data.user_info?.[0].firstName
   let lat = json.data.user_info?.[0].lastName
   showProfileContainers();
-  buildheader(name,lat,lev, token)
+  buildheader(name,lat,lev)
   builskillssvg(json.data.skills, json.data.totalxp)
   builratiosvg(json.data.ratio)
   buildinformation(json.data.user_info)
