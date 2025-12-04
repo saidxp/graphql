@@ -1,6 +1,5 @@
 export function buildinformation(data) {
     // Her <-<==========>->
-    console.log("hello im at the build information table !!")
     let userInfo = data[0]
     console.log(userInfo.finished_projects)
     buildProjectsTable(userInfo.finished_projects)
@@ -57,7 +56,13 @@ export function buildProjectsTable(finished_projects) {
     // Create table wrapper
     const tableWrapper = document.createElement("div");
     tableWrapper.className = "table-wrapper";
-    tableWrapper.appendChild(h)
+    tableWrapper.appendChild(h) 
+    // Scroll .......... 
+    if (finished_projects.length > 20) {
+        tableWrapper.style.maxHeight = "400px";
+        tableWrapper.style.overflowY = "auto";
+        tableWrapper.style.border = "1px solid #ccc";
+    }
     // Create table
     const table = document.createElement("table");
     table.className = "projects-table";
@@ -71,13 +76,13 @@ export function buildProjectsTable(finished_projects) {
       const th = document.createElement("th");
       th.textContent = title;
       headerRow.appendChild(th);
-    });
-   
+    }); 
+    // < >
     thead.appendChild(headerRow);
-    table.appendChild(thead);
-    // Create body
+    table.appendChild(thead);  
+    // Create-Body !! 
     const tbody = document.createElement("tbody");
-    // Fill rows
+    // Fill-Rows !!
     finished_projects.forEach((project, i) => {
       const tr = document.createElement("tr");
       const tdNum = document.createElement("td");
@@ -90,7 +95,7 @@ export function buildProjectsTable(finished_projects) {
       tdPath.textContent = projectName;
       tdPath.className = "td-path";
       tr.appendChild(tdPath);
-      // <<=====>>
+
       const tdMembers = document.createElement("td");
       const members = project.group.members.map(m => m.userLogin).join(", ");
       tdMembers.textContent = members;
@@ -98,7 +103,6 @@ export function buildProjectsTable(finished_projects) {
       tr.appendChild(tdMembers);  
       tbody.appendChild(tr);
     });
-
     table.appendChild(tbody);
     tableWrapper.appendChild(table);
     container.appendChild(tableWrapper);

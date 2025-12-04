@@ -1,5 +1,5 @@
 # GraphQl Project – GraphQL & JWT
-
+  
 This project is a simple forum application built with a GraphQL backend and JWT authentication.  
 The frontend is deployed on Vercel.
 
@@ -16,15 +16,13 @@ Users can  log in, and interact with INTRA ZONE01 OUJDA through GraphQL queries 
 ## 🛠 Tech Stack
 **Backend**
 - GraphQL
-- JWT (JSON Web Tokens)
-
+- JWT (JSON Web Tokens) 
 **Frontend**
 - HTML / CSS / JavaScript 
 
 **Deployment**
 - Vercel (Frontend)
 --- 
-
 ## Authentication
 The Browser issues a JWT when a user logs in.  
 The token is stored in LOCALSTORAGE and is required for protected GraphQL operations.

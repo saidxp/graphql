@@ -1,45 +1,17 @@
-import {loginpage} from './login.js'
-import {setListner} from './listners.js'
-import { BuildProfile } from './profile.js'
-import { showProfileContainers } from './profile.js'
+import { loginpage } from '../builder/login.js'
+import { setListner } from '../builder/listners.js'
+import { BuildProfile, showProfileContainers } from '../builder/profile.js'
+import { isTokenValid } from './authentication/auth.js'
 
- 
 async function main() {
-    console.log("Hello Bro !! ")
-    // <<==>> !-! <<==>> \\ 
-    if (isTokenValid()) {
-        // User is authenticated 
-        console.log("User is authenticated");
+    if (isTokenValid()) { 
+        console.log("There Is ALOT OF BOOM ")
         showProfileContainers();
-        BuildProfile(); 
+        BuildProfile();
     } else {
-        // User is not authenticated
-        console.log("User is not authenticated, showing login page");
-         const el = loginpage();
+        const el = loginpage();
         setListner(el);
     }
-    console.log("After auth check"); // 
 }
-
-// start<=>main
+// Main !!
 main();
-
-function isTokenValid() {  
-    const raw = localStorage.getItem("jwt");
-    if (!raw) return false;
-    const parts = raw.split('.');
-    if (parts.length !== 3) return false; 
-    console.log("IM At Check Validation Of Time From Local-Storage")
-    console.log(parts)
-    try {
-        const payload = JSON.parse(atob(parts[1]));
-        console.log("Im At Part of payload :") 
-        console.log(payload) 
-        console.log("<<====>>")
-        if (!payload.exp) return false;
-        const now = Math.floor(Date.now() / 1000);
-        return now < payload.exp;
-    } catch {
-        return false;
-    }
-}

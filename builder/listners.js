@@ -1,5 +1,4 @@
-import { showProfileContainers } from "./profile.js";
-import { BuildProfile } from "./profile.js";
+import { showProfileContainers , BuildProfile} from "./profile.js";
 
 export async function setListner({ form, nameinput, password, errorDiv }) {
     form.addEventListener('submit', async (event) => {

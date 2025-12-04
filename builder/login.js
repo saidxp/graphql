@@ -7,11 +7,7 @@ export function loginpage() {
     link.href = "./css/login.css";
     document.head.appendChild(link); 
 
-    // Err Container !! 
-    // Create the error div (hidden at first)
-
     const container = document.getElementById('login') 
-
     const errorDiv = document.createElement('div');
     errorDiv.id = "login-error";
     errorDiv.style.color = "red";
@@ -47,12 +43,7 @@ export function loginpage() {
     // Her i will  add children to ther father !!
     form.append(userLabel, nameinput, document.createElement("br"))
     form.append(PasswordLabel, Password, document.createElement("br"))
-    form.appendChild(submit)
-    // Undefined ??!
-    //Console.log(i)  
+    form.appendChild(submit) 
     container.appendChild(form)
-   
-    // Her Is The Style Div
-    //container.append(divMain)
     return { form, nameinput, password,  errorDiv};
 }
