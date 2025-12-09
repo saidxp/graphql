@@ -1,10 +1,7 @@
-export function builskillssvg(skills, totalxp) {
-
+export function builskillssvg(skills) {
     const object = {}
     const skill = skills?.[0].transactions.entries()
-
     skill.forEach(skill => {
-
         let type = skill[1].type
         let amount = skill[1].amount
 
@@ -17,20 +14,20 @@ export function builskillssvg(skills, totalxp) {
             object[type] = amount
         }
     })
-    
     const final = {}
     Object.entries(object).map(([Key, value]) => {
         const key = Key.split("_")[1]
         final[key] = value
     })
-
     const skillsDiv = document.getElementById("skills");
     const h = document.createElement('h2');
     h.innerText = "Skills";
     h.className = "skill-row";
-
+    if (Object.keys(final).length > 20) {
+        skillsDiv.style.height = "1200px";
+        skillsDiv.style.overflowY = "auto";
+    }
     skillsDiv.appendChild(h);
-
     Object.entries(final)
         .sort((a, b) => b[1] - a[1])
         .forEach(([name, percent]) => {

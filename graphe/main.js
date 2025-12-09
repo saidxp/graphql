@@ -5,7 +5,6 @@ import { isTokenValid } from './authentication/auth.js'
 
 async function main() {
     if (isTokenValid()) { 
-        console.log("There Is ALOT OF BOOM ")
         showProfileContainers();
         BuildProfile();
     } else {
@@ -13,5 +12,4 @@ async function main() {
         setListner(el);
     }
 }
-// Main !!
 main();

@@ -10,7 +10,6 @@ query {
     auditRatio
     totalUp
     totalDown
-
     finished_projects: groups(
       where: {
         group: {

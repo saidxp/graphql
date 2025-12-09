@@ -6,9 +6,8 @@ export function builratiosvg(object) {
     const success = obj.sucess.aggregate.count;
     const total = failed + success;
     const successPercent = (success / total) * 100;
-
     const container = document.getElementById("101");
-
+    
     if (!container) {
         console.log("No container found with id='101'");
         return;
@@ -18,11 +17,10 @@ export function builratiosvg(object) {
     title.innerText = "Audit Ratio";
     title.className = "skill-row";
     container.appendChild(title);
-
     const radius = 60;
     const cir = 2 * Math.PI * radius;
     const set = cir * (1 - successPercent / 100);
-    
+
     const svgWrapper = document.createElement("div");
     svgWrapper.innerHTML = `
         <svg width="200" height="200" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
@@ -34,14 +32,7 @@ export function builratiosvg(object) {
                 <filter id="shadow">
                     <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#4caf50" flood-opacity="0.5"/>
                 </filter>
-            </defs>
-
-            <!-- Red background circle -->
-            <circle cx="75" cy="75" r="60" 
-                stroke="rgba(239, 68, 68, 0.3)" 
-                stroke-width="18" 
-                fill="none"/>
-
+            </defs> 
             <!-- Red main circle -->
             <circle cx="75" cy="75" r="60" 
                 stroke="#ef4444" 
@@ -61,7 +52,7 @@ export function builratiosvg(object) {
                 stroke-dasharray="${cir}" 
                 stroke-dashoffset="${set}"
                 transform="rotate(-90 75 75)"
-                stroke-linecap="round"
+                stroke-linecap="ruite"
                 filter="url(#shadow)"/>
 
             <!-- Labels inside circle -->
@@ -69,14 +60,13 @@ export function builratiosvg(object) {
                 fill="#fff" font-size="12" font-weight="500" opacity="0.7">
                 Audit Ratio
             </text>
-            <text x="75" y="85" text-anchor="middle" 
+            <text x="75" y="92" text-anchor="middle" 
                 fill="#8bc34a" font-size="20" font-weight="bold">
                 ${ratio}
             </text>
         </svg>
     `;
     container.appendChild(svgWrapper.firstElementChild);
-
     const label = document.createElement("div");
     label.className = "label-ratio";
     label.innerHTML = `

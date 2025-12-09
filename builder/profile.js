@@ -8,7 +8,6 @@ import { reset } from "../graphe/helpers/reset.js"
 
 export async function BuildProfile() {
   const token = getJWT()
-  console.log(token)
   const res = await fetch('https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql', {
         method: 'POST',
         headers: {
@@ -18,8 +17,6 @@ export async function BuildProfile() {
         body: JSON.stringify({query: user}) 
   })
   const json = await res.json(); 
-  // Her I will when jwt not valide 
-  // {errors: Array(1)}
   if (json.errors) {  
     reset()
     return 

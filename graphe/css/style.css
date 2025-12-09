@@ -119,7 +119,7 @@ body {
     border-bottom: none;
 }
 
-.projects-table td {
+#project table td {
     padding: 16px 20px;
     color: rgba(255, 255, 255, 0.85);
     font-size: 14px;

@@ -1,4 +1,4 @@
-import { showProfileContainers , BuildProfile} from "./profile.js";
+import { showProfileContainers, BuildProfile } from "./profile.js";
 
 export async function setListner({ form, nameinput, password, errorDiv }) {
     form.addEventListener('submit', async (event) => {
@@ -13,14 +13,14 @@ export async function setListner({ form, nameinput, password, errorDiv }) {
                     'Content-Type': 'application/json'
                 }
             });
-            const data = await response.json(); 
+            const data = await response.json();
             if (!response.ok) {
                 showError("invalid credentials", errorDiv)
                 return;
             }
             localStorage.setItem('jwt', data);
             BuildProfile();
-            showProfileContainers(); // <<//>> !!
+            showProfileContainers();
         } catch (err) {
             showError("Login failed", errorDiv)
         }

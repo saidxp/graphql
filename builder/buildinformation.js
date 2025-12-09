@@ -1,13 +1,8 @@
 export function buildinformation(data) {
-    // Her <-<==========>->
     let userInfo = data[0]
-    console.log(userInfo.finished_projects)
     buildProjectsTable(userInfo.finished_projects)
-    // Get The Info div  
     const infoDiv = document.getElementById('Info');
-    // Clear any existing content !! 
     infoDiv.innerHTML = '';
-    // Create the HTML content with the data
     infoDiv.innerHTML = `
         <div class="info-item">
             <span class="info-label">Full Name:</span>
@@ -46,28 +41,22 @@ export function buildinformation(data) {
     `;
 }
 
-export function buildProjectsTable(finished_projects) {
+export function buildProjectsTable(finished_projects) { 
     const container = document.getElementById("project");
     container.innerHTML = ""; // clear old table if it exists  
-     const h = document.createElement('h2');
-        h.innerText = "Projects";
-        h.className = "pj";
-       // container.appendChild(h)
-    // Create table wrapper
+    const h = document.createElement('h2');
+    h.innerText = "Projects";
+    h.className = "pj";
+
     const tableWrapper = document.createElement("div");
     tableWrapper.className = "table-wrapper";
     tableWrapper.appendChild(h) 
-    // Scroll .......... 
-    if (finished_projects.length > 20) {
-        tableWrapper.style.maxHeight = "400px";
+    if (finished_projects.length > 20) {  
+        tableWrapper.style.height = "1200px";
         tableWrapper.style.overflowY = "auto";
-        tableWrapper.style.border = "1px solid #ccc";
+       
     }
-    // Create table
     const table = document.createElement("table");
-    table.className = "projects-table";
-  
-    // Create header
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
     const headers = ["#", "Project Name", "Group Members"];
