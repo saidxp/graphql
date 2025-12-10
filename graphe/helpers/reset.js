@@ -1,5 +1,5 @@
-import { loginpage } from "../../builder/login.js";
-import { setListner } from "../../builder/listners.js";
+import { loginpage } from "../builder/login.js";
+import { setListner } from "../builder/listners.js";
 
  export async function reset() {
             localStorage.removeItem("jwt");

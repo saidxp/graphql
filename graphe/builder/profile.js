@@ -3,8 +3,8 @@ import { buildheader } from "../builder/buildheader.js"
 import { builskillssvg } from "../builder/buildskillssvg.js"
 import { builratiosvg } from "../builder/buildratiosvg.js"
 import { buildinformation } from "../builder/buildinformation.js"
-import {getJWT} from "../graphe/helpers/auth.js"
-import { reset } from "../graphe/helpers/reset.js"
+import {getJWT} from "../helpers/auth.js"
+import { reset } from "../helpers/reset.js"
 
 export async function BuildProfile() {
   const token = getJWT()

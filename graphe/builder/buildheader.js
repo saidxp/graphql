@@ -1,4 +1,4 @@
-import { reset } from "../graphe/helpers/reset.js";
+import { reset } from "../helpers/reset.js";
 export function buildheader(name, lat, lev) {
     const lin = document.querySelector('link[href="/css/login.css"]');
     if (lin) lin.remove();
