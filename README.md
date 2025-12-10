@@ -4,7 +4,7 @@ This project is a simple forum application built with a GraphQL backend and JWT 
 The frontend is deployed on Vercel.
 
 ### 🌍 Live Website
-https://graphql-nine-navy.vercel.app/
+https://graphql-saidxps-projects.vercel.app/
 ---
 ## 📌 Description
 This project was created to practice:
